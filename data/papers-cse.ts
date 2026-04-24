@@ -404,7 +404,7 @@ export const QUESTION_EEE: Record<string, SemesterPapers> = {
         papers: [
           { label: "Series 1", href: "https://drive.google.com/file/d/1EOb1p7WHT4OKp6L_TF00Uq9HC8iIyH_l/view?usp=sharing" },
           { label: "Series 2", href: "https://drive.google.com/file/d/1dtaXzF7q79WCshc6gP30WRaB74DXwt8X/view?usp=sharing" },
-          { label: "Semester Paper", href: "https://drive.google.com/file/d/1dtaXzF7q79WCshc6gP30WRaB74DXwt8X/view?usp=sharing" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/13We61nKk8eQnC2SuYr43o1fiwOUbqi5d/view?usp=sharing" },
         ],
       },
       {
@@ -616,7 +616,7 @@ export const QUESTION_ECP: Record<string, SemesterPapers> = {
         papers: [
           { label: "Series 1", href: "https://drive.google.com/file/d/1EOb1p7WHT4OKp6L_TF00Uq9HC8iIyH_l/view?usp=sharing" },
           { label: "Series 2", href: "https://drive.google.com/file/d/1dtaXzF7q79WCshc6gP30WRaB74DXwt8X/view?usp=sharing" },
-          { label: "Semester Paper", href: "https://drive.google.com/file/d/1jRUWVVJXD0HEe7XFaiRoMIxr7JntHsDv/view?usp=sharing" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/13We61nKk8eQnC2SuYr43o1fiwOUbqi5d/view?usp=sharing" },
         ],
       },
       {
@@ -821,7 +821,7 @@ export const QUESTION_AEI: Record<string, SemesterPapers> = {
         papers: [
           { label: "Series 1", href: "https://drive.google.com/file/d/1EOb1p7WHT4OKp6L_TF00Uq9HC8iIyH_l/view?usp=sharing" },
           { label: "Series 2", href: "https://drive.google.com/file/d/1dtaXzF7q79WCshc6gP30WRaB74DXwt8X/view?usp=sharing" },
-          { label: "Semester Paper", href: "https://drive.google.com/file/d/1dtaXzF7q79WCshc6gP30WRaB74DXwt8X/view?usp=sharing" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/13We61nKk8eQnC2SuYr43o1fiwOUbqi5d/view?usp=sharing" },
         ],
       },
       {
@@ -1070,9 +1070,9 @@ export const QUESTION_ME: Record<string, SemesterPapers> = {
       },
       {
         name: "Introduction to Electrical and Electronics Engineering", papers: [
-          { label: "Series 1", href: "https://drive.google.com/file/d/1UpIHmrsGBCpU9dGtp9ql3pt6RuD0xfrY/view?usp=sharing" },
-          { label: "Series 2", href: "https://drive.google.com/file/d/1_i2I9XqoRZD4WKpMGbuTw-aSdUkq_tQ9/view?usp=sharing" },
-          { label: "Semester Paper", href: "https://drive.google.com/file/d/1-ImbEEJm29fFypJYUFRu2-1L2dE31GdP/view?usp=sharing" },
+          { label: "Series 1", href: "https://drive.google.com/file/d/1-qrx7KfJCBynika0kX9LwAjIVFL37kZ2/view?usp=sharing" },
+          { label: "Series 2", href: "https://drive.google.com/file/d/1yvMO1bQZmH-5PoM3QRnNGy2YNAceFJ1G/view?usp=sharing" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/1dkgKgDWp51bExlJ84ofoJqMSwHKNDw1-/view?usp=sharing" },
         ]
       },
       {
@@ -1266,9 +1266,9 @@ export const QUESTION_CE: Record<string, SemesterPapers> = {
       },
       {
         name: "Introduction to Electrical and Electronics Engineering", papers: [
-          { label: "Series 1", href: "https://drive.google.com/file/d/1UpIHmrsGBCpU9dGtp9ql3pt6RuD0xfrY/view?usp=sharing" },
-          { label: "Series 2", href: "https://drive.google.com/file/d/1_i2I9XqoRZD4WKpMGbuTw-aSdUkq_tQ9/view?usp=sharing" },
-          { label: "Semester Paper", href: "https://drive.google.com/file/d/1gCbrnv1wRTA4gv4SRnTFqtiubCH6n4tM/view?usp=sharing" },
+          { label: "Series 1", href: "https://drive.google.com/file/d/1-qrx7KfJCBynika0kX9LwAjIVFL37kZ2/view?usp=sharing" },
+          { label: "Series 2", href: "https://drive.google.com/file/d/1yvMO1bQZmH-5PoM3QRnNGy2YNAceFJ1G/view?usp=sharing" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/1dkgKgDWp51bExlJ84ofoJqMSwHKNDw1-/view?usp=sharing" },
         ]
       },
       {
@@ -1475,9 +1475,9 @@ export const QUESTION_IE: Record<string, SemesterPapers> = {
       },
       {
         name: "Introduction to Electrical and Electronics Engineering", papers: [
-          { label: "Series 1", href: "https://drive.google.com/file/d/1UpIHmrsGBCpU9dGtp9ql3pt6RuD0xfrY/view?usp=sharing" },
-          { label: "Series 2", href: "https://drive.google.com/file/d/1_i2I9XqoRZD4WKpMGbuTw-aSdUkq_tQ9/view?usp=sharing" },
-          { label: "Semester Paper", href: "https://drive.google.com/file/d/1gCbrnv1wRTA4gv4SRnTFqtiubCH6n4tM/view?usp=sharing" },
+          { label: "Series 1", href: "https://drive.google.com/file/d/1-qrx7KfJCBynika0kX9LwAjIVFL37kZ2/view?usp=sharing" },
+          { label: "Series 2", href: "https://drive.google.com/file/d/1yvMO1bQZmH-5PoM3QRnNGy2YNAceFJ1G/view?usp=sharing" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/1dkgKgDWp51bExlJ84ofoJqMSwHKNDw1-/view?usp=sharing" },
         ]
       },
       {
