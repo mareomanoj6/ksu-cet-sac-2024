@@ -1086,7 +1086,7 @@ export const QUESTION_ME: Record<string, SemesterPapers> = {
         name: "Material Science and Engineering (Core)", papers: [
           { label: "Series 1", href: "https://drive.google.com/file/d/1jJNs7bwvlynkBVLxWptkEhIYvMbr5Qiu/view?usp=sharing" },
           { label: "Series 2", href: "https://drive.google.com/file/d/1q8klGX-0G4_hiLoA2fyVJXq9g45qTikm/view?usp=sharing" },
-          { label: "Semester Paper (Coming Soon)", href: "#" },
+          { label: "Semester Paper", href: "https://drive.google.com/file/d/1KJIr_Mt9l__I1N7Hj0X50oA39cJEqyEu/view?usp=sharing" },
         ]
       },
     ],
