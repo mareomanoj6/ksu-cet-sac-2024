@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const lexend = Lexend({
   variable: "--font-lexend",
   weight: "variable",
