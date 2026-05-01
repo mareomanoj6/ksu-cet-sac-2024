@@ -20,7 +20,7 @@ export async function getContacts() {
 export async function getNotes(department: string) {
   const { data, error } = await supabase
     .from("notes")
-    .select("*")
+    .select("id, semester, subject_name")
     .eq("department", department)
     .order("semester", { ascending: true });
 
@@ -37,7 +37,7 @@ export async function getNotes(department: string) {
     }
     semestersMap.get(note.semester)!.push({
       label: note.subject_name,
-      href: note.link_url,
+      href: `/api/view?type=note&id=${note.id}`,
     });
   });
 
@@ -51,7 +51,7 @@ export async function getNotes(department: string) {
 export async function getQuestionPapers(department: string) {
   const { data, error } = await supabase
     .from("question_papers")
-    .select("*")
+    .select("id, semester, subject_name, exam_type")
     .eq("department", department);
 
   if (error) {
@@ -75,7 +75,7 @@ export async function getQuestionPapers(department: string) {
 
     subject.papers.push({
       label: paper.exam_type,
-      href: paper.link_url,
+      href: `/api/view?type=paper&id=${paper.id}`,
     });
   });
 
@@ -102,8 +102,8 @@ export async function getScholarships(): Promise<Scholarship[]> {
     lastDate: item.deadline_date,
     description: item.description,
     requirements: item.requirements,
-    applyLink: item.apply_link,
-    infoLink: item.info_link,
+    applyLink: `/api/view?type=scholarship&id=${item.id}&field=apply`,
+    infoLink: item.info_link ? `/api/view?type=scholarship&id=${item.id}&field=info` : undefined,
   }));
 }
 
@@ -131,12 +131,12 @@ export async function getMinorCourses(): Promise<Record<string, DepartmentData>>
       minorCourses[course.department].minors!.push({
         label: course.course_name,
         value: course.course_name.toLowerCase().replace(/ /g, "-"),
-        driveLink: course.syllabus_link,
+        driveLink: `/api/view?type=minor&id=${course.id}`,
         info: course.description || "",
       });
     } else {
       minorCourses[course.department].label = course.course_name;
-      minorCourses[course.department].driveLink = course.syllabus_link;
+      minorCourses[course.department].driveLink = `/api/view?type=minor&id=${course.id}`;
     }
   });
 
@@ -146,7 +146,7 @@ export async function getMinorCourses(): Promise<Record<string, DepartmentData>>
 export async function getSyllabusCurriculum() {
   const { data, error } = await supabase
     .from("syllabus_curriculum")
-    .select("*");
+    .select("id, department, type, semester");
 
   if (error) {
     console.error("Error fetching syllabus:", error);
@@ -159,13 +159,14 @@ export async function getSyllabusCurriculum() {
   };
 
   data.forEach((item) => {
+    const maskedUrl = `/api/view?type=syllabus&id=${item.id}`;
     if (item.type === "curriculum") {
-      driveLinks.curriculum[item.department] = item.link_url;
+      driveLinks.curriculum[item.department] = maskedUrl;
     } else if (item.type === "syllabus") {
       if (!driveLinks.syllabus[item.department]) {
         driveLinks.syllabus[item.department] = {};
       }
-      driveLinks.syllabus[item.department][item.semester] = item.link_url;
+      driveLinks.syllabus[item.department][item.semester] = maskedUrl;
     }
   });
 
