@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { GENERAL_INFO } from "@/data/minor-courses";
-import type { DepartmentData } from "@/data/minor-courses";
+import { GENERAL_INFO } from "@/lib/constants";
+import type { DepartmentData } from "@/lib/types";
 
 interface MinorCoursesViewProps {
   minorCoursesData: Record<string, DepartmentData>;

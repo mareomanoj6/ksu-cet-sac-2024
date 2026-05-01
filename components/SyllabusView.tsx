@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { DeptKey, TypeKey } from "@/data/syllabus";
+import type { DeptKey, TypeKey } from "@/lib/types";
 
 type TypeValue = "" | TypeKey;
 type DeptValue = "" | DeptKey;

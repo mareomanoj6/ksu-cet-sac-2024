@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import type { SemesterPapers } from "@/data/papers-cse";
+import type { SemesterPapers } from "@/lib/types";
 
 const SEM_KEYS = ["sem1", "sem2", "sem3", "sem4", "sem5", "sem6", "sem7", "sem8"] as const;
 

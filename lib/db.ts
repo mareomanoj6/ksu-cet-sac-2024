@@ -1,8 +1,8 @@
 import { supabase } from "./supabase";
-import type { DepartmentData } from "@/data/minor-courses";
-import type { SemesterPapers } from "@/data/papers-cse";
-import type { Scholarship } from "@/data/scholarships";
-import type { DeptKey } from "@/data/syllabus";
+import type { DepartmentData } from "@/lib/types";
+import type { SemesterPapers } from "@/lib/types";
+import type { Scholarship } from "@/lib/types";
+import type { DeptKey } from "@/lib/types";
 
 export async function getContacts() {
   const { data, error } = await supabase

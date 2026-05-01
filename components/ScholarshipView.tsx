@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import type { ReactElement } from "react";
-import type { Scholarship, DeadlineDate } from "@/data/scholarships";
+import type { Scholarship, DeadlineDate } from "@/lib/types";
 
 type FilterType = "all" | "general" | "girl";
 type FilterSource = "all" | "government" | "private";
