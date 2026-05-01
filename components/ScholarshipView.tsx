@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import type { ReactElement } from "react";
 import type { Scholarship, DeadlineDate } from "@/data/scholarships";
-import { SCHOLARSHIPS } from "@/data/scholarships";
 
 type FilterType = "all" | "general" | "girl";
 type FilterSource = "all" | "government" | "private";
@@ -103,14 +102,18 @@ function formatDeadline(lastDate: DeadlineDate): ReactElement[] {
   ];
 }
 
-export function ScholarshipView() {
+interface ScholarshipViewProps {
+  scholarships: Scholarship[];
+}
+
+export function ScholarshipView({ scholarships }: ScholarshipViewProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [typeFilter, setTypeFilter] = useState<FilterType>("all");
   const [sourceFilter, setSourceFilter] = useState<FilterSource>("all");
   const [sortOrder, setSortOrder] = useState<SortOrder>("none");
 
   const filteredAndSorted = useMemo(() => {
-    let filtered = SCHOLARSHIPS.filter((scholarship) => {
+    let filtered = scholarships.filter((scholarship) => {
       const typeMatch =
         typeFilter === "all" || scholarship.type === typeFilter;
       const sourceMatch =
@@ -135,7 +138,7 @@ export function ScholarshipView() {
       const comparison = dateA.getTime() - dateB.getTime();
       return sortOrder === "asc" ? comparison : -comparison;
     });
-  }, [searchTerm, typeFilter, sourceFilter, sortOrder]);
+  }, [searchTerm, typeFilter, sourceFilter, sortOrder, scholarships]);
 
   const handleTypeFilter = (value: FilterType) => {
     setTypeFilter((prev) => (prev === value ? "all" : value));

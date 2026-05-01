@@ -1,13 +1,20 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { DRIVE_LINKS, type DeptKey, type TypeKey } from "@/data/syllabus";
+import type { DeptKey, TypeKey } from "@/data/syllabus";
 
 type TypeValue = "" | TypeKey;
 type DeptValue = "" | DeptKey;
 type SemValue = "" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
 
-export function SyllabusView() {
+interface SyllabusViewProps {
+  driveLinks: {
+    curriculum: Record<string, string>;
+    syllabus: Record<string, Record<number, string>>;
+  };
+}
+
+export function SyllabusView({ driveLinks }: SyllabusViewProps) {
   const [type, setType] = useState<TypeValue>("");
   const [dept, setDept] = useState<DeptValue>("");
   const [sem, setSem] = useState<SemValue>("");
@@ -19,10 +26,10 @@ export function SyllabusView() {
 
   const url = useMemo(() => {
     if (!ready) return "";
-    if (type === "curriculum") return DRIVE_LINKS.curriculum[dept];
+    if (type === "curriculum") return driveLinks.curriculum[dept];
     const semesterNum = Number(sem) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-    return DRIVE_LINKS.syllabus[dept][semesterNum];
-  }, [dept, ready, sem, type]);
+    return driveLinks.syllabus[dept]?.[semesterNum] || "";
+  }, [dept, ready, sem, type, driveLinks]);
 
   function onTypeChange(v: TypeValue) {
     setType(v);

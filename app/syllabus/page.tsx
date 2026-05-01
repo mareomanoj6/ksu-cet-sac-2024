@@ -4,13 +4,17 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { Footer } from "@/components/Footer";
 import { SyllabusView } from "@/components/SyllabusView";
 
+import { getSyllabusCurriculum } from "@/lib/db";
+
 export const metadata: Metadata = {
   title: "Syllabus - KSU Student Assist Cell",
   description:
     "Syllabus for all departments at KSU CET. Access course syllabi organized by department, semester, and subject.",
 };
 
-export default function SyllabusPage() {
+export default async function SyllabusPage() {
+  const driveLinks = await getSyllabusCurriculum();
+
   return (
     <>
       <Navbar variant="sub" />
@@ -23,7 +27,7 @@ export default function SyllabusPage() {
           <p>Explore the detailed syllabus and curriculum for all departments at CET.</p>
         </section>
       </main>
-      <SyllabusView />
+      <SyllabusView driveLinks={driveLinks} />
       <SocialLinks />
       <Footer />
     </>

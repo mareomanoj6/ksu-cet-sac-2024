@@ -4,8 +4,14 @@ import { Navbar } from "@/components/Navbar";
 import { SocialLinks } from "@/components/SocialLinks";
 import { Footer } from "@/components/Footer";
 import { HomePageInteractivity } from "./HomePageInteractivity";
+import { getContacts } from "@/lib/db";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const contacts = await getContacts();
+
+  const topContacts = contacts.slice(0, 5);
+  const bottomContacts = contacts.slice(5);
+
   return (
     <>
       <Navbar variant="home" />
@@ -137,109 +143,56 @@ export default function HomePage() {
           <h2>Contact Us</h2>
           <div className="contacts-grid">
             <div className="contacts-row contacts-row-top">
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
+              {topContacts.map((contact: any) => (
+                <div key={contact.id} className="contact-card">
+                  <div className="contact-icon">
+                    <i className="fas fa-user" aria-hidden />
+                  </div>
+                  {contact.developer_link && (
+                    <div className="developer-icon">
+                      <a
+                        className="icon-dev-link"
+                        href={contact.developer_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${contact.name} developer site`}
+                      >
+                        <i className="fas fa-code" aria-hidden />
+                      </a>
+                    </div>
+                  )}
+                  <h3>{contact.name}</h3>
+                  <p>
+                    <i className="fas fa-phone" aria-hidden /> {contact.phone_number}
+                  </p>
                 </div>
-                <h3>Hasi Rahman K</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 9446842092
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Daris Benny</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 9778135924
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Devan</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 8111835721
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Helan</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 8139841609
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Janees</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 7736760704
-                </p>
-              </div>
+              ))}
             </div>
             <div className="contacts-row contacts-row-bottom">
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
+              {bottomContacts.map((contact: any) => (
+                <div key={contact.id} className="contact-card">
+                  <div className="contact-icon">
+                    <i className="fas fa-user" aria-hidden />
+                  </div>
+                  {contact.developer_link && (
+                    <div className="developer-icon">
+                      <a
+                        className="icon-dev-link"
+                        href={contact.developer_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${contact.name} developer site`}
+                      >
+                        <i className="fas fa-code" aria-hidden />
+                      </a>
+                    </div>
+                  )}
+                  <h3>{contact.name}</h3>
+                  <p>
+                    <i className="fas fa-phone" aria-hidden /> {contact.phone_number}
+                  </p>
                 </div>
-                <h3>Anand Maheshwar</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 9447839911
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <div className="developer-icon">
-                  <a
-                    className="icon-dev-link"
-                    href="https://mareomanoj.is-a.dev"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Mareo Manoj developer site"
-                  >
-                    <i className="fas fa-code" aria-hidden />
-                  </a>
-                </div>
-                <h3>Mareo Manoj</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 7306641617
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Mariam Jo</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 9496622452
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Noel Tom</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 6238999360
-                </p>
-              </div>
-              <div className="contact-card">
-                <div className="contact-icon">
-                  <i className="fas fa-user" aria-hidden />
-                </div>
-                <h3>Yamin Beck</h3>
-                <p>
-                  <i className="fas fa-phone" aria-hidden /> 7012837399
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>

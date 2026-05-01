@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { DepartmentNotesLayout } from "@/components/DepartmentNotesLayout";
-import { NOTES_IE } from "@/data/notes";
+import { getNotes } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Industrial Engineering Notes - KSU Student Assist Cell",
@@ -8,12 +8,14 @@ export const metadata: Metadata = {
     "Industrial Engineering Notes for KSU CET students. Comprehensive study materials organized by semester.",
 };
 
-export default function NotesIEPage() {
+export default async function NotesIEPage() {
+  const notes = await getNotes("ie");
+
   return (
     <DepartmentNotesLayout
       title="Industrial Engineering Notes"
       description="Comprehensive study materials for IE students, organized by semester."
-      semesters={NOTES_IE}
+      semesters={notes}
     />
   );
 }

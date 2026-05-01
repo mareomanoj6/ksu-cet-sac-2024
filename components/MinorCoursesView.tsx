@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { MINOR_COURSES_DATA, GENERAL_INFO } from "@/data/minor-courses";
-import type { DepartmentData, MinorOption } from "@/data/minor-courses";
+import { GENERAL_INFO } from "@/data/minor-courses";
+import type { DepartmentData } from "@/data/minor-courses";
 
-export function MinorCoursesView() {
+interface MinorCoursesViewProps {
+  minorCoursesData: Record<string, DepartmentData>;
+}
+
+export function MinorCoursesView({ minorCoursesData }: MinorCoursesViewProps) {
   const [selectedDept, setSelectedDept] = useState<string>("");
   const [showGeneralInfo, setShowGeneralInfo] = useState(false);
 
@@ -15,7 +19,7 @@ export function MinorCoursesView() {
   const renderDepartmentInfo = () => {
     if (!selectedDept) return null;
 
-    const data = MINOR_COURSES_DATA[selectedDept];
+    const data = minorCoursesData[selectedDept];
     if (!data) return null;
 
     if (data.minors) {

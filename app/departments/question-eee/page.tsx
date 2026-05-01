@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { QuestionDepartmentLayout } from "@/components/QuestionDepartmentLayout";
 import { QuestionDepartmentView } from "@/components/QuestionDepartmentView";
-import { QUESTION_EEE } from "@/data/papers-cse";
+import { getQuestionPapers } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "EEE Question Papers - KSU Student Assist Cell",
@@ -9,13 +9,15 @@ export const metadata: Metadata = {
     "Electrical and Electronics Engineering Question Papers for KSU CET students.",
 };
 
-export default function QuestionEEEPage() {
+export default async function QuestionEEEPage() {
+  const papers = await getQuestionPapers("eee");
+
   return (
     <QuestionDepartmentLayout
       title="Electrical and Electronics Engineering Question Papers"
       description="Access previous year question papers organized by semester and subject."
     >
-      <QuestionDepartmentView data={QUESTION_EEE} />
+      <QuestionDepartmentView data={papers} />
     </QuestionDepartmentLayout>
   );
 }

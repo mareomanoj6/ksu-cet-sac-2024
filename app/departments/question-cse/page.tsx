@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { QuestionDepartmentLayout } from "@/components/QuestionDepartmentLayout";
 import { QuestionDepartmentView } from "@/components/QuestionDepartmentView";
-import { QUESTION_CSE } from "@/data/papers-cse";
+import { getQuestionPapers } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "CSE Question Papers - KSU 2024 Scheme",
@@ -9,13 +9,15 @@ export const metadata: Metadata = {
     "Computer Science and Engineering Question Papers for KSU CET students. Access previous year question papers organized by semester.",
 };
 
-export default function QuestionCSEPage() {
+export default async function QuestionCSEPage() {
+  const papers = await getQuestionPapers("cse");
+
   return (
     <QuestionDepartmentLayout
       title="Computer Science and Engineering Question Papers"
       description="Access previous year question papers organized by semester and subject."
     >
-      <QuestionDepartmentView data={QUESTION_CSE} />
+      <QuestionDepartmentView data={papers} />
     </QuestionDepartmentLayout>
   );
 }

@@ -4,13 +4,17 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { Footer } from "@/components/Footer";
 import { MinorCoursesView } from "@/components/MinorCoursesView";
 
+import { getMinorCourses } from "@/lib/db";
+
 export const metadata: Metadata = {
   title: "Minor Courses - KSU Student Assist Cell",
   description:
     "Minor Courses information for KSU CET students. Explore available minor course options and requirements.",
 };
 
-export default function MinorCoursesPage() {
+export default async function MinorCoursesPage() {
+  const minorCourses = await getMinorCourses();
+
   return (
     <>
       <Navbar variant="sub" />
@@ -19,7 +23,7 @@ export default function MinorCoursesPage() {
           <h1>Minor Courses</h1>
           <p>Access information and resources for Minor Courses offered at CET.</p>
         </section>
-        <MinorCoursesView />
+        <MinorCoursesView minorCoursesData={minorCourses} />
       </main>
       <SocialLinks />
       <Footer />
