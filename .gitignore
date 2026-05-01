@@ -17,3 +17,10 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
+
+.env.local
+plan.md
+/admin-portal
+seed.sql
+fix-notes.sh
+scripts/

@@ -55,15 +55,15 @@ async function renderPage(pageId) {
         contentArea.innerHTML = `<h1>Welcome to the Admin Portal</h1><p>Select a category from the navigation to manage data.</p>`;
         return;
     }
-    
+
     if (!supabaseClient) {
         alert("Supabase client is not initialized. Please set your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in the .env file.");
         return;
     }
-    
+
     currentPage = pageId;
     const page = pages[pageId];
-    
+
     let html = `
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h1>${page.title}</h1>
@@ -99,32 +99,32 @@ async function renderPage(pageId) {
             </div>
         </div>
     `;
-    
+
     contentArea.innerHTML = html;
-    
+
     // Bind modal buttons since inline onclick doesn't work well with modules
     document.getElementById('add-btn').addEventListener('click', openModal);
     document.getElementById('cancel-btn').addEventListener('click', closeModal);
     document.getElementById('record-form').addEventListener('submit', saveRecord);
-    
+
     await fetchData();
 }
 
 async function fetchData() {
     const page = pages[currentPage];
     const { data, error } = await supabaseClient.from(page.table).select('*').order('created_at', { ascending: false });
-    
+
     const tbody = document.getElementById('table-body');
     if (error) {
         tbody.innerHTML = `<tr><td colspan="${page.fields.length + 1}">Error: ${error.message}</td></tr>`;
         return;
     }
-    
+
     if (!data || data.length === 0) {
         tbody.innerHTML = `<tr><td colspan="${page.fields.length + 1}">No records found.</td></tr>`;
         return;
     }
-    
+
     tbody.innerHTML = data.map(row => `
         <tr>
             ${page.fields.map(f => `<td>${row[f] || ''}</td>`).join('')}
@@ -133,7 +133,7 @@ async function fetchData() {
             </td>
         </tr>
     `).join('');
-    
+
     document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', (e) => deleteRecord(e.target.dataset.id));
     });
@@ -152,10 +152,10 @@ async function saveRecord(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const record = Object.fromEntries(formData.entries());
-    
+
     const page = pages[currentPage];
     const { error } = await supabaseClient.from(page.table).insert([record]);
-    
+
     if (error) {
         alert("Error saving record: " + error.message);
     } else {
@@ -166,10 +166,10 @@ async function saveRecord(event) {
 
 async function deleteRecord(id) {
     if (!confirm('Are you sure you want to delete this record?')) return;
-    
+
     const page = pages[currentPage];
     const { error } = await supabaseClient.from(page.table).delete().eq('id', id);
-    
+
     if (error) {
         alert("Error deleting record: " + error.message);
     } else {

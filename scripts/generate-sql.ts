@@ -8,9 +8,9 @@ import { DRIVE_LINKS } from '../data/syllabus';
 
 import { NOTES_CSE, NOTES_ECE, NOTES_EEE, NOTES_ECP, NOTES_AEI, NOTES_ME, NOTES_CE, NOTES_IE } from '../data/notes';
 
-import { 
-  QUESTION_CSE, QUESTION_ECE, QUESTION_EEE, QUESTION_ECP, 
-  QUESTION_AEI, QUESTION_ME, QUESTION_CE, QUESTION_IE 
+import {
+    QUESTION_CSE, QUESTION_ECE, QUESTION_EEE, QUESTION_ECP,
+    QUESTION_AEI, QUESTION_ME, QUESTION_CE, QUESTION_IE
 } from '../data/papers-cse';
 
 let sql = `-- Supabase Seed Data\n\n`;
