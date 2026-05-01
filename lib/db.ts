@@ -8,7 +8,7 @@ export async function getContacts() {
   const { data, error } = await supabase
     .from("contacts")
     .select("*")
-    .order("created_at", { ascending: true });
+    .order("name", { ascending: true });
 
   if (error) {
     console.error("Error fetching contacts:", error);
@@ -22,7 +22,8 @@ export async function getNotes(department: string) {
     .from("notes")
     .select("id, semester, subject_name")
     .eq("department", department)
-    .order("semester", { ascending: true });
+    .order("semester", { ascending: true })
+    .order("subject_name", { ascending: true });
 
   if (error) {
     console.error(`Error fetching notes for ${department}:`, error);
@@ -52,7 +53,10 @@ export async function getQuestionPapers(department: string) {
   const { data, error } = await supabase
     .from("question_papers")
     .select("id, semester, subject_name, exam_type")
-    .eq("department", department);
+    .eq("department", department)
+    .order("semester", { ascending: true })
+    .order("subject_name", { ascending: true })
+    .order("exam_type", { ascending: true });
 
   if (error) {
     console.error(`Error fetching question papers for ${department}:`, error);
@@ -110,7 +114,8 @@ export async function getScholarships(): Promise<Scholarship[]> {
 export async function getMinorCourses(): Promise<Record<string, DepartmentData>> {
   const { data, error } = await supabase
     .from("minor_courses")
-    .select("*");
+    .select("*")
+    .order("created_at", { ascending: true });
 
   if (error) {
     console.error("Error fetching minor courses:", error);
@@ -146,7 +151,9 @@ export async function getMinorCourses(): Promise<Record<string, DepartmentData>>
 export async function getSyllabusCurriculum() {
   const { data, error } = await supabase
     .from("syllabus_curriculum")
-    .select("id, department, type, semester");
+    .select("id, department, type, semester")
+    .order("semester", { ascending: true })
+    .order("created_at", { ascending: true });
 
   if (error) {
     console.error("Error fetching syllabus:", error);
