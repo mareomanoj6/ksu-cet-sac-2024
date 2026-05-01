@@ -8,7 +8,7 @@ export async function getContacts() {
   const { data, error } = await supabase
     .from("contacts")
     .select("*")
-    .order("order_index", { ascending: true });
+    .order("created_at", { ascending: true });
 
   if (error) {
     console.error("Error fetching contacts:", error);
@@ -66,7 +66,7 @@ export async function getQuestionPapers(department: string) {
     if (!papersMap[key]) {
       papersMap[key] = { id: key, subjects: [] };
     }
-    
+
     let subject = papersMap[key].subjects.find((s: any) => s.name === paper.subject_name);
     if (!subject) {
       subject = { name: paper.subject_name, papers: [] };
