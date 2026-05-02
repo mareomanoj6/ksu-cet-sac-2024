@@ -55,8 +55,7 @@ export async function getQuestionPapers(department: string) {
     .select("id, semester, subject_name, exam_type")
     .eq("department", department)
     .order("semester", { ascending: true })
-    .order("subject_name", { ascending: true })
-    .order("exam_type", { ascending: true });
+    .order("subject_name", { ascending: true });
 
   if (error) {
     console.error(`Error fetching question papers for ${department}:`, error);
@@ -80,6 +79,26 @@ export async function getQuestionPapers(department: string) {
     subject.papers.push({
       label: paper.exam_type,
       href: `/api/view?type=paper&id=${paper.id}`,
+    });
+  });
+
+  const getExamWeight = (label: string) => {
+    const lower = label.toLowerCase();
+    if (lower.includes("series 1")) return 1;
+    if (lower.includes("series 2")) return 2;
+    if (lower.includes("series")) return 3;
+    if (lower.includes("semester")) return 4;
+    return 5;
+  };
+
+  Object.values(papersMap).forEach((sem: any) => {
+    sem.subjects.forEach((subject: any) => {
+      subject.papers.sort((a: any, b: any) => {
+        const weightA = getExamWeight(a.label);
+        const weightB = getExamWeight(b.label);
+        if (weightA !== weightB) return weightA - weightB;
+        return a.label.localeCompare(b.label);
+      });
     });
   });
 
